@@ -1,6 +1,6 @@
 {
 	"name": "typescript-di-container",
-	"version": "1.0.4",
+	"version": "1.0.5",
 	"keywords": [
 		"di", "dependency", "injection",
 		"dependency injection", "dependency inversion", "ioc",
