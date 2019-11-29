@@ -21,7 +21,6 @@ export class Container {
 	}
 
 	private getForwardedRef<T>(Clazz: new (...params) => T) {
-		console.log('Clazz', Clazz);
 		return Clazz['forwardRef'] ? Clazz['forwardRef']() : Clazz;
 	}
 }
