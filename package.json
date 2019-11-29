@@ -1,0 +1,22 @@
+{
+	"name": "typescript-di-container",
+	"version": "1.0.3",
+	"keywords": ["di", "dependency", "injection", "dependency-injection", "ioc", "typescript", "container"],
+	"description": "",
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"scripts": {
+		"build": "rm -rf dist && tsc",
+		"watch": "rm -rf dist && tsc --watch",
+		"test": "npm run build && node dist/Container.js"
+	},
+	"author": "Alexandru Luca",
+	"license": "ISC",
+	"devDependencies": {
+		"@types/node": "^12.12.6",
+		"typescript": "^3.7.2"
+	},
+	"dependencies": {
+		"reflect-metadata": "^0.1.13"
+	}
+}

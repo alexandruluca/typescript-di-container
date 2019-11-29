@@ -1,0 +1,30 @@
+{
+	"compilerOptions": {
+		"resolveJsonModule": true,
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"declaration": true,
+		"outDir": "./dist",
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"lib": [
+			"dom",
+			"es2016"
+		],
+		"module": "commonjs",
+		"moduleResolution": "node",
+		"inlineSourceMap": true,
+		"target": "es5",
+		"removeComments": false
+	},
+	"filesGlob": [
+		"./**/*.ts",
+		"!./node_modules/**/*.ts"
+	],
+	"exclude": [
+		"node_modules",
+		"dist",
+		"test",
+		"components"
+	]
+}
