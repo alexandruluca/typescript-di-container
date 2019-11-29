@@ -1,7 +1,11 @@
 {
 	"name": "typescript-di-container",
-	"version": "1.0.3",
-	"keywords": ["di", "dependency", "injection", "dependency-injection", "ioc", "typescript", "container"],
+	"version": "1.0.4",
+	"keywords": [
+		"di", "dependency", "injection",
+		"dependency injection", "dependency inversion", "ioc",
+		"typescript", "javascript", "container"
+	],
 	"description": "",
 	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",
