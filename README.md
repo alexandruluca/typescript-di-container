@@ -1,11 +1,11 @@
 # Typescript dependency container
 This is a simple dependency constructor injection container for classes. Dependencies will be automatically mapped with help of reflect-metadata with the emitted
-meta information
+meta information. Each injectable class needs to be decorated with the "Injectable" decorator. This is because typescript only emits decorator metadata for decorated classes
 
 ## Usage
 
 ```
-import {Container} from 'typescript-di-container';
+import {Container, Injectable} from 'typescript-di-container';
 
 const container = new Container();
 
@@ -31,7 +31,7 @@ let authRouter = container.get(AuthRouter);
 The container will automatically throw an error if a circular dependency is found
 
 ```
-import {Injectable, Inject, ForwardRef} from 'typescript-di-container';
+import {Injectable, Inject, ForwardRef, Container} from 'typescript-di-container';
 
 class A {
 	constructor(b: B) {}
@@ -55,7 +55,7 @@ undefined error.
 In order to overcome this problem, one can use ForwardRef, like so
 
 ```
-import {Injectable, Inject, ForwardRef} from 'typescript-di-container';
+import {Injectable, Inject, ForwardRef, Container} from 'typescript-di-container';
 
 class A {
 	constructor(b: B) {}
