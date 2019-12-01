@@ -24,7 +24,7 @@ export class Container {
 		let types = Types[Clazz.name];
 
 		if(!types) {
-			throw new Error(`provider not found for ${Clazz.name}`);
+			throw new Error(`Provider not found for ${Clazz.name}. Make sure ${Clazz.name} is decorated with @Injectable`);
 		}
 
 		return types().map(Type => {

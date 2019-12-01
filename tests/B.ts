@@ -6,7 +6,6 @@ export class B {
 	private a: A;
 
 	constructor(@Inject(new ForwardRef(() => A)) a: A) {
-		console.log('a', a);
 	}
 }
 

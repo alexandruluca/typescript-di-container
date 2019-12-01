@@ -18,12 +18,17 @@
 	"scripts": {
 		"build": "rm -rf dist && tsc",
 		"watch": "rm -rf dist && tsc --watch",
-		"test": "npm run build && node dist/Container.js"
+		"test": "mocha --exit -r ts-node/register --timeout 5000 tests/**/*.spec.ts"
 	},
 	"author": "Alexandru Luca",
 	"license": "ISC",
 	"devDependencies": {
+		"@types/chai": "^4.2.5",
+		"@types/mocha": "^5.2.7",
 		"@types/node": "^12.12.6",
+		"chai": "^4.2.0",
+		"mocha": "^6.2.2",
+		"ts-node": "^8.5.4",
 		"typescript": "^3.7.2"
 	},
 	"dependencies": {

@@ -5,6 +5,5 @@ import {Injectable} from '../src/Injectable';
 export class A {
 	b: B;
 	constructor(b: B) {
-		console.log('b', b)
 	}
 }

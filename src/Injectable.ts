@@ -6,7 +6,7 @@ export function Injectable() {
 		Types[target.name] = () => {
 			let injectables = Reflect.getMetadata(injectableMetadataKey, target) || [];
 			injectables = injectables && injectables.constructor;
-			let paramTypes = Reflect.getMetadata('design:paramtypes', target);
+			let paramTypes = Reflect.getMetadata('design:paramtypes', target) || [];
 
 			paramTypes.forEach((param, idx) => {
 				if (!param && injectables[idx]) {
