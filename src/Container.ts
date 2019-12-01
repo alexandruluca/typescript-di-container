@@ -1,26 +1,42 @@
 import 'reflect-metadata';
-import {Types} from "./Injectable";
+import {Types, ForwardRef} from "./Injectable";
 
 export class Container {
+	private initial: string;
+	private traversalGraph: {[key: string]: boolean | string} = {};
 	get<T>(Clazz: new (...params) => T): T {
-		Clazz = this.getForwardedRef(Clazz);
-		let args = this.getArgumentList(Clazz);
+		this.initial = Clazz.name;
 
+		let instance = this._get(Clazz);
+		this.initial = this.traversalGraph = null;
+		return instance;
+	}
+
+	private _get<T>(Clazz: new (...params) => T): T {
+		let args = this.getArgumentList(Clazz);
 		return new Clazz(...args);
 	}
 
 	private getArgumentList<T>(Clazz: new (...params) => T) {
-		Clazz = this.getForwardedRef(Clazz);
+		if (Clazz instanceof ForwardRef) {
+			Clazz = Clazz.unwrap();
+		}
 		let types = Types[Clazz.name];
 
 		if(!types) {
 			throw new Error(`provider not found for ${Clazz.name}`);
 		}
 
-		return types().map(Type => this.get(Type));
-	}
+		return types().map(Type => {
+			if(this.traversalGraph[Type.name]) {
+				let keys = Object.keys(this.traversalGraph);
+				keys.unshift(this.initial);
 
-	private getForwardedRef<T>(Clazz: new (...params) => T) {
-		return Clazz['forwardRef'] ? Clazz['forwardRef']() : Clazz;
+				throw new Error(`Circular dependency detected: ${keys.join(' -> ')}`);
+
+			}
+			this.traversalGraph[Type.name] = true;
+			return this._get(Type);
+		});
 	}
 }
