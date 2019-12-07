@@ -2,7 +2,14 @@
 
 # Typescript dependency container
 This is a simple dependency constructor injection container for classes. Dependencies will be automatically mapped with help of reflect-metadata with the emitted
-meta information. Each injectable class needs to be decorated with the "Injectable" decorator. This is because typescript only emits decorator metadata for decorated classes
+meta information. Each injectable class needs to be decorated with the "Injectable" decorator. This is because typescript only emits decorator metadata for decorated classes.
+
+You will need to add followin lines to your tsconfig.json file
+
+```
+	"emitDecoratorMetadata": true,
+	"experimentalDecorators": true,
+```
 
 ## Usage
 
