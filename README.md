@@ -42,19 +42,20 @@ The container will automatically throw an error if a circular dependency is foun
 ```
 import {Injectable, Inject, ForwardRef, Container} from 'typescript-di-container';
 
-class A {
-	constructor(b: B) {}
+@Injectable()
+class D {
+    constructor(@Inject(new ForwardRef(() => E)) e: E) {}
 }
-
-class B {
-	constructor(@Inject(new ForwardRef(() => A)) a: A) {}
+@Injectable()
+class E {
+    constructor(d: D) {}
 }
 
 const container = new Container();
 
-const a = container.get(A);
+const a = container.get(D);
 
-// will throw error => Circular dependency detected: A -> B -> A
+// will throw error => Circular dependency detected: D -> E -> D
 ```
 
 ## Dealing with modules which have circular dependencies
@@ -66,17 +67,18 @@ In order to overcome this problem, one can use ForwardRef, like so
 ```
 import {Injectable, Inject, ForwardRef, Container} from 'typescript-di-container';
 
-class A {
-	constructor(b: B) {}
+@Injectable()
+class D {
+    constructor(@Inject(new ForwardRef(() => E)) e: E) {}
 }
-
-class B {
-	constructor(@Inject(new ForwardRef(() => A)) a: A) {}
+@Injectable()
+class E {
+    constructor(d: D) {}
 }
 
 const container = new Container();
 
-const a = container.get(A);
+const a = container.get(D);
 ```
 
 

@@ -8,7 +8,8 @@ export class Container {
 		this.initial = Clazz.name;
 
 		let instance = this._get(Clazz);
-		this.initial = this.traversalGraph = null;
+		this.initial = null;
+		this.traversalGraph = {};
 		return instance;
 	}
 
